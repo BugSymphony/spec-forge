@@ -1,0 +1,164 @@
+type: object
+description: >
+  SpecForge Tasks 阶段输出报告 Schema (Comic)。  
+  ⚠️ 所有长文本字段必须使用 YAML 多行块格式。
+
+required:
+  - summary
+  - phases
+  - stories
+
+properties:
+  summary:
+    type: object
+    description: 全局统计信息
+    required:
+      - total_tasks
+      - phase_count
+      - story_count
+    properties:
+      total_tasks:
+        type: integer
+      phase_count:
+        type: integer
+      story_count:
+        type: integer
+  phases:
+    type: array
+    description: 阶段定义列表
+    minItems: 3
+    items:
+      type: object
+      required:
+        - name
+        - order
+        - purpose
+        - task_count
+      properties:
+        name:
+          type: string
+        order:
+          type: integer
+        purpose:
+          type: string
+        task_count:
+          type: integer
+  setup:
+    type: object
+    required:
+      - purpose
+      - task_count
+      - tasks
+    properties:
+      purpose:
+        type: string
+      task_count:
+        type: integer
+      tasks:
+        type: array
+        items:
+          $ref: "#/definitions/task"
+  foundation:
+    type: object
+    required:
+      - purpose
+      - task_count
+      - tasks
+    properties:
+      purpose:
+        type: string
+      task_count:
+        type: integer
+      tasks:
+        type: array
+        items:
+          $ref: "#/definitions/task"
+  stories:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      required:
+        - story_id
+        - priority
+        - goal
+        - independent_test
+        - task_count
+        - tasks
+      properties:
+        story_id:
+          type: string
+          pattern: "^Story-[0-9]+$"
+        priority:
+          type: string
+          enum: [ P1, P2, P3 ]
+        goal:
+          type: string
+        independent_test:
+          type: string
+        task_count:
+          type: integer
+        tasks:
+          type: array
+          items:
+            $ref: "#/definitions/task"
+  polish:
+    type: object
+    required:
+      - purpose
+      - task_count
+      - tasks
+    properties:
+      purpose:
+        type: string
+      task_count:
+        type: integer
+      tasks:
+        type: array
+        items:
+          $ref: "#/definitions/task"
+definitions:
+  task:
+    type: object
+    required:
+      - id
+      - phase
+      - story
+      - description
+      - path
+      - depends
+      - goal
+      - action
+      - output
+      - acceptance
+    properties:
+      id:
+        pattern: "^TASK-[0-9]+$"
+      phase:
+        type: string
+      description:
+        type: string
+      path:
+        type: string
+      depends:
+        type: array
+        items:
+          type: string
+      status:
+        type: string
+        enum: [ "", "pending", "doing", "completed", "failed" ]
+      goal:
+        type: string
+      action:
+        type: array
+        items:
+          type: string
+      output:
+        type: array
+        items:
+          type: string
+      acceptance:
+        type: array
+        items:
+          type: string
+additionalProperties: false

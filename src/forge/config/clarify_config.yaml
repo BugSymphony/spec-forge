@@ -1,0 +1,147 @@
+# SpecForge Clarify 配置
+# 定义各内容类型的澄清问题规则
+
+clarify_rules:
+  novel:
+    name: "小说"
+    rules:
+      - keywords: [ "主角", "主人公" ]
+        question: "主角是谁？他的身份、性格或核心特征是什么？"
+        priority: 1
+
+      - keywords: [ "冲突", "目标", "对抗", "危机" ]
+        question: "故事的核心冲突或主线目标是什么？主角要达成什么？"
+        priority: 2
+
+      - keywords: [ "世界", "背景", "时代", "设定" ]
+        question: "故事发生在什么背景或世界观？（现代/古代/科幻/奇幻等）"
+        priority: 3
+
+      - keywords: [ "类型", "题材", "奇幻", "科幻", "爱情", "悬疑" ]
+        question: "小说的类型或题材是什么？（如奇幻、科幻、校园、悬疑等）"
+        priority: 4
+
+      - keywords: [ "风格", "基调", "黑暗", "轻松", "热血" ]
+        question: "整体风格或基调是什么？（轻松、黑暗、热血、现实主义等）"
+        priority: 5
+
+      - keywords: [ "字数", "篇幅", "长篇", "短篇" ]
+        question: "预计小说的篇幅要求规模是多少？（短篇/中篇/长篇，或大致字数）"
+        priority: 6
+
+      - keywords: [ "读者", "受众", "人群" ]
+        question: "目标读者是谁？（如青少年、成年人、特定兴趣群体）"
+        priority: 7
+  
+  video:
+    name: "视频"
+    rules:
+      - keywords: [ "核心主题", "主题定位" ]
+        question: "视频的核心主题是什么？希望解决什么问题或传达什么信息？"
+        priority: 1
+
+      - keywords: [ "目标观众", "受众" ]
+        question: "目标观众是谁？（年龄段、兴趣领域、观看场景）"
+        priority: 2
+
+      - keywords: [ "价值主张", "独特价值" ]
+        question: "视频的独特价值是什么？与同类内容的差异化优势？"
+        priority: 3
+
+      - keywords: [ "视觉风格", "画面风格" ]
+        question: "期望的视觉风格是什么？（实拍/动画/MG/录屏/混合）"
+        priority: 4
+
+      - keywords: [ "音频风格", "BGM", "配音" ]
+        question: "音频风格要求？（BGM 风格、配音风格、音效使用）"
+        priority: 5
+
+      - keywords: [ "剪辑节奏", "节奏" ]
+        question: "剪辑节奏偏好？（快节奏/中速/慢节奏）"
+        priority: 6
+
+      - keywords: [ "技术规格", "分辨率", "帧率" ]
+        question: "技术规格要求？（分辨率、帧率、画幅比例、输出格式）"
+        priority: 7
+
+      - keywords: [ "发布平台", "平台" ]
+        question: "发布平台是哪个？（B 站/抖音/YouTube/视频号）有什么特殊要求？"
+        priority: 8
+
+      - keywords: [ "脚本格式", "分镜表" ]
+        question: "期望的脚本格式？（分镜表/文字脚本/表格脚本/混合）"
+        priority: 9
+  
+  article:
+    name: "文章"
+    rules:
+      - keywords: [ "核心论点", "主题观点" ]
+        question: "文章的核心论点或主题观点是什么？"
+        priority: 1
+
+      - keywords: [ "目标读者", "读者" ]
+        question: "目标读者是谁？他们有什么特点和需求？"
+        priority: 2
+
+      - keywords: [ "逻辑结构", "大纲" ]
+        question: "文章的逻辑结构如何？有哪些主要部分？"
+        priority: 3
+
+      - keywords: [ "文风", "风格" ]
+        question: "文章风格？（正式/非正式/深度/轻松）"
+        priority: 4
+
+      - keywords: [ "发布平台", "媒体" ]
+        question: "发布平台？（公众号/博客/媒体/知乎）"
+        priority: 5
+
+      - keywords: [ "字数", "篇幅" ]
+        question: "预期字数或篇幅？"
+        priority: 6
+  
+  comic:
+    name: "漫画"
+    rules:
+      - keywords: [ "剧情", "故事梗概" ]
+        question: "故事的剧情主线是什么？"
+        priority: 1
+
+      - keywords: [ "主角", "角色" ]
+        question: "主要角色有哪些？他们的特征和关系？"
+        priority: 2
+
+      - keywords: [ "世界观", "背景" ]
+        question: "故事的世界观或背景设定？"
+        priority: 3
+
+      - keywords: [ "画风", "风格" ]
+        question: "期望的画风？（日式/美式/韩漫/水墨等）"
+        priority: 4
+
+      - keywords: [ "色调", "色彩" ]
+        question: "色调偏好？（彩色/黑白/暖色/冷色）"
+        priority: 5
+
+      - keywords: [ "页数", "篇幅" ]
+        question: "预期页数或篇幅？"
+        priority: 6
+
+# 全局配置
+global_settings:
+  default_max_questions: 8
+  min_questions: 3
+  max_questions: 10
+  
+  # 问题生成策略
+  strategy:
+    # 按优先级排序
+    sort_by_priority: true
+    
+    # 是否允许自定义问题
+    allow_custom_questions: true
+    
+    # 问题语气
+    tone: "friendly"  # friendly | formal | casual
+    
+    # 是否提供示例
+    include_examples: true

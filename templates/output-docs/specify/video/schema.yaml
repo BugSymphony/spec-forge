@@ -1,0 +1,123 @@
+type: object
+description: >
+  视频大纲结构化数据，用于生成完整视频策划文档
+  ⚠️ 所有长文本字段必须使用 YAML 多行块格式。
+
+properties:
+  title:
+    type: string
+    description: 视频标题
+  status:
+    type: string
+    description: 当前状态
+    default: Draft
+  version:
+    type: string
+    description: 文档版本号
+    default: "1.0"
+  topic_positioning:
+    type: object
+    description: 主题定位
+    properties:
+      main_topic:
+        type: string
+        description: 核心主题（200-300 字）
+      target_audience:
+        type: string
+        description: 目标观众描述（100-150 字）
+      value_proposition:
+        type: string
+        description: 价值主张（100-150 字）
+      use_cases:
+        type: array
+        description: 应用场景列表
+        items:
+          type: string
+  content_structure:
+    type: array
+    description: 内容结构（建议 5-8 个场景）
+    items:
+      type: object
+      properties:
+        title:
+          type: string
+          description: 场景标题
+        key_points:
+          type: array
+          description: 核心要点列表
+          items:
+            type: string
+        duration:
+          type: string
+          description: 预期时长
+        materials_needed:
+          type: array
+          description: 素材需求列表
+          items:
+            type: string
+  narrative_structure:
+    type: object
+    description: 叙事架构
+    properties:
+      hook:
+        type: string
+        description: 开篇钩子（前 5 秒）
+      body:
+        type: string
+        description: 主体论述
+      conclusion:
+        type: string
+        description: 结尾收束（含 CTA）
+  style:
+    type: object
+    description: 视听风格
+    properties:
+      visual_style:
+        type: string
+        description: 视觉风格（实拍/动画/MG 等）
+      audio_style:
+        type: string
+        description: 音频风格（BGM、配音、音效）
+      editing_rhythm:
+        type: string
+        description: 剪辑节奏（快/中/慢）
+  constraints:
+    type: object
+    description: 约束条件
+    properties:
+      tech_specs:
+        type: object
+        description: 技术规格
+        properties:
+          resolution:
+            type: string
+          framerate:
+            type: string
+          aspect_ratio:
+            type: string
+          format:
+            type: string
+      duration:
+        type: object
+        description: 时长要求
+        properties:
+          total:
+            type: string
+          per_scene:
+            type: string
+      platform:
+        type: string
+        description: 发布平台及格式要求
+      forbidden_elements:
+        type: array
+        description: 禁止出现的内容列表
+        items:
+          type: string
+
+required:
+  - title
+  - topic_positioning
+  - content_structure
+  - narrative_structure
+  - style
+  - constraints

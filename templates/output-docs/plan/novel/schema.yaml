@@ -1,0 +1,293 @@
+type: object
+description: >
+  小说创作计划（Plan）。
+  用于定义创作策略、结构设计和写作原则。
+  ⚠️ 本文档为“策略层”，不得包含具体剧情、章节内容或细节描写。
+  ⚠️ 所有长文本字段（如 summary、background 等）必须使用 YAML 多行块格式：
+  
+  示例：
+  
+  summary: |
+    这里是第一行
+    这里是第二行
+  
+  ❌ 禁止使用双引号 " 包裹长文本
+
+required:
+  - title
+  - creative_intent
+  - narrative_strategy
+  - pacing_system
+  - character_system
+  - world_system
+  - writing_principles
+  - risks
+  - consistency_rules
+  - project_structure
+
+properties:
+
+  title:
+    type: string
+    description: >
+      小说标题。应与 Spec 保持一致，不得新增或修改。
+
+  status:
+    type: string
+    description: >
+      文档状态，如 Draft / Final。
+
+  version:
+    type: string
+    description: >
+      文档版本号，例如 1.0。
+
+  creative_intent:
+    type: object
+    description: >
+      创作意图模块。说明作品“为什么存在”以及“想表达什么”，
+      从主题与读者体验角度进行抽象描述，不得复述剧情。
+    required: [ theme, expression, reader_experience ]
+    properties:
+
+      theme:
+        type: string
+        description: >
+          核心主题（如成长、复仇、救赎等）。
+          要抽象总结，不得描述具体剧情或人物事件。
+
+      expression:
+        type: string
+        description: >
+          主题的表达方式。
+          说明如何通过“叙事方式 / 角色变化 / 冲突设计”体现主题，
+          使用策略性描述（如“通过持续冲突强化主题”），而不是剧情细节。
+
+      reader_experience:
+        type: string
+        description: >
+          目标读者体验（如紧张感、爽感、压迫感、治愈等）。
+          应描述情绪变化趋势，而非具体桥段。
+
+  narrative_strategy:
+    type: object
+    description: >
+      全局叙事策略。从方法论角度说明故事如何被构建，
+      不得出现具体剧情或事件描述。
+    required: [ structure_type, conflict_escalation, suspense_strategy ]
+    properties:
+
+      structure_type:
+        type: string
+        description: >
+          故事推进结构（如线性、多线、交叉叙事等）。
+          需说明选择该结构的原因及其优势。
+
+      conflict_escalation:
+        type: string
+        description: >
+          冲突升级机制。
+          描述冲突如何逐步增强（如“从局部冲突到全局冲突”），
+          禁止写具体冲突内容。
+
+      suspense_strategy:
+        type: string
+        description: >
+          悬念与反转的设计原则。
+          说明悬念出现的频率、位置和作用，而不是具体情节。
+
+  pacing_system:
+    type: object
+    description: >
+      节奏控制体系。描述如何控制整体节奏变化，
+      不得涉及具体章节或剧情。
+    required: [ pacing_rules, climax_distribution, information_flow ]
+    properties:
+
+      pacing_rules:
+        type: string
+        description: >
+          快慢节奏切换规则。
+          说明在什么情况下加速或放缓节奏（如冲突密度变化）。
+
+      climax_distribution:
+        type: string
+        description: >
+          高潮分布原则。
+          说明高潮如何递进（如逐级放大），避免具体剧情描述。
+
+      information_flow:
+        type: string
+        description: >
+          信息释放节奏。
+          说明信息如何逐步披露，避免一次性信息堆积。
+
+  character_system:
+    type: object
+    description: >
+      角色驱动机制。从系统角度描述角色如何推动故事，
+      不得重复角色设定或背景。
+    required: [ protagonist_growth, relationship_dynamics, character_rules ]
+    properties:
+
+      protagonist_growth:
+        type: string
+        description: >
+          主角成长驱动机制。
+          描述成长的“方式与路径”（如“通过失败推动成长”），
+          不得写具体经历。
+
+      relationship_dynamics:
+        type: string
+        description: >
+          角色关系如何产生张力（如对立、依赖、利益冲突）。
+
+      character_rules:
+        type: array
+        description: >
+          角色使用原则列表。
+          每条为规则（如“每个角色必须推动剧情或冲突”）。
+        items:
+          type: string
+
+  world_system:
+    type: object
+    description: >
+      世界观驱动策略。说明设定如何服务于故事推进，
+      不得复述世界观细节。
+    required: [ rules_usage, conflict_generation, reveal_strategy ]
+    properties:
+
+      rules_usage:
+        type: string
+        description: >
+          世界规则如何影响剧情推进（机制层面）。
+
+      conflict_generation:
+        type: string
+        description: >
+          如何通过设定制造冲突（如限制、资源稀缺等）。
+
+      reveal_strategy:
+        type: string
+        description: >
+          世界观信息揭示策略（逐步揭露，而非一次说明）。
+
+  writing_principles:
+    type: array
+    description: >
+      写作决策原则列表。
+      每条必须是“可执行规则”，用于指导写作判断。
+    items:
+      type: string
+      description: >
+        一条明确的写作规则（如“每一段必须推进信息或冲突”）。
+
+  risks:
+    type: array
+    description: >
+      风险与问题预判。
+      必须列出潜在结构性问题，并提供解决方案。
+    items:
+      type: object
+      required: [ problem, cause, solution ]
+      properties:
+
+        problem:
+          type: string
+          description: >
+            潜在问题（如节奏拖沓、人物扁平等）。
+
+        cause:
+          type: string
+          description: >
+            问题产生的原因（结构或策略层面）。
+
+        solution:
+          type: string
+          description: >
+            对应解决策略，必须具体且可执行。
+
+  consistency_rules:
+    type: object
+    description: >
+      全局一致性约束规则，用于保证作品稳定性。
+    required: [ world, character, style ]
+    properties:
+
+      world:
+        type: string
+        description: >
+          世界观一致性规则（如规则不可被随意打破）。
+
+      character:
+        type: string
+        description: >
+          角色行为一致性规则（行为必须符合性格）。
+
+      style:
+        type: string
+        description: >
+          风格一致性规则（语气、表达方式统一）。
+
+  project_structure:
+    type: object
+    description: >
+      小说整体结构设计（架构层）。
+      用于定义小说的分层策略、章节组织、信息架构与叙事模块。
+      ⚠️ 此处仅为结构策略层，不得包含具体剧情、章节文本或细节描写。
+      ⚠️ 可用于 LLM 指导生成章节文件、文件树及内容模板。
+    required:
+      - chapters
+      - information_architecture
+      - narrative_modules
+    properties:
+      chapters:
+        type: array
+        description: >
+          章节列表，按索引顺序排列，每个章节生成单独文件。
+          文件名格式为 "001-章节slug.md"，slug为英文短标识。
+        minItems: 1
+        items:
+          type: object
+          required: [ index, slug, title ]
+          properties:
+            index:
+              type: integer
+              minimum: 1
+              description: 章节顺序号，从1开始
+            slug:
+              type: string
+              description: 章节英文短标识，用于文件名
+            title:
+              type: string
+              description: 章节完整标题
+
+      information_architecture:
+        type: object
+        description: >
+          信息架构设计。
+          指导 LLM 如何分布信息、设置前期与后期揭示。
+        required: [ distribution, early_info, late_info ]
+        properties:
+          distribution:
+            type: string
+            description: >
+              信息整体分布策略（均衡/前期密集/高潮集中等）。
+          early_info:
+            type: string
+            description: >
+              必须在前期揭示的信息类型（如世界规则、核心冲突）。
+          late_info:
+            type: string
+            description: >
+              延迟揭示的信息类型（如反转伏笔、隐藏角色关系）。
+
+      narrative_modules:
+        type: array
+        description: >
+          可复用叙事结构模块。
+          用于指导 LLM 构建章节或情节模板。
+          例如：“冲突→失败→成长→反击”、“铺垫→高潮→收束”。
+        items:
+          type: string

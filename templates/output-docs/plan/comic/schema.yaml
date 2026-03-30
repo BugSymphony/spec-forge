@@ -1,0 +1,185 @@
+type: object
+description: >
+  漫画创作计划（Plan）。
+  用于定义视觉策略、构图设计和绘画原则。
+  ⚠️ 本文档为"策略层"，不得包含具体画面、分镜或细节描写。
+  ⚠️ 所有长文本字段必须使用 YAML 多行块格式。
+
+required:
+  - title
+  - visual_intent
+  - narrative_strategy
+  - pacing_system
+  - character_acting
+  - composition_camera
+  - color_lighting
+  - drawing_principles
+  - risks
+  - consistency_rules
+  - project_structure
+
+properties:
+  title:
+    type: string
+    description: 漫画标题，与 Spec 保持一致
+  status:
+    type: string
+    description: 文档状态，如 Draft / Final
+  version:
+    type: string
+    description: 文档版本号
+  visual_intent:
+    type: object
+    description: 视觉意图模块
+    required: [ theme, expression, reader_experience ]
+    properties:
+      theme:
+        type: string
+        description: 核心视觉主题
+      expression:
+        type: string
+        description: 主题的表达方式
+      reader_experience:
+        type: string
+        description: 目标读者视觉体验
+  narrative_strategy:
+    type: object
+    description: 全局叙事策略
+    required: [ structure_type, conflict_escalation, suspense_strategy ]
+    properties:
+      structure_type:
+        type: string
+        description: 页面推进结构
+      conflict_escalation:
+        type: string
+        description: 冲突升级机制
+      suspense_strategy:
+        type: string
+        description: 悬念与反转策略
+  pacing_system:
+    type: object
+    description: 节奏控制体系
+    required: [ panel_density, climax_design, emotion_flow ]
+    properties:
+      panel_density:
+        type: string
+        description: 分镜密度分布
+      climax_design:
+        type: string
+        description: 高潮页设计原则
+      emotion_flow:
+        type: string
+        description: 情绪切换节奏
+  character_acting:
+    type: object
+    description: 角色表演系统
+    required: [ expression_rules, action_design, interaction_patterns ]
+    properties:
+      expression_rules:
+        type: string
+        description: 表情演绎规则
+      action_design:
+        type: string
+        description: 动作设计原则
+      interaction_patterns:
+        type: string
+        description: 角色互动模式
+  composition_camera:
+    type: object
+    description: 构图与镜头策略
+    required: [ composition_rules, camera_language, perspective_switching ]
+    properties:
+      composition_rules:
+        type: string
+        description: 构图原则
+      camera_language:
+        type: string
+        description: 镜头语言
+      perspective_switching:
+        type: string
+        description: 视角切换策略
+  color_lighting:
+    type: object
+    description: 色彩与光影策略
+    required: [ color_emotion, lighting_rules, special_effects ]
+    properties:
+      color_emotion:
+        type: string
+        description: 色彩情绪设计
+      lighting_rules:
+        type: string
+        description: 光影运用原则
+      special_effects:
+        type: string
+        description: 特殊效果使用
+  drawing_principles:
+    type: array
+    description: 绘画决策原则列表
+    items:
+      type: string
+  risks:
+    type: array
+    description: 风险与问题预判
+    items:
+      type: object
+      required: [ problem, cause, solution ]
+      properties:
+        problem:
+          type: string
+        cause:
+          type: string
+        solution:
+          type: string
+  consistency_rules:
+    type: object
+    description: 一致性约束规则
+    required: [ character, style, perspective ]
+    properties:
+      character:
+        type: string
+        description: 角色形象一致性
+      style:
+        type: string
+        description: 美术风格一致性
+      perspective:
+        type: string
+        description: 透视与比例一致性
+  project_structure:
+    type: object
+    description: 漫画整体结构设计
+    required:
+      - pages
+      - information_architecture
+      - visual_modules
+    properties:
+      pages:
+        type: array
+        description: 页面列表
+        items:
+          type: object
+          required: [ index, slug, title ]
+          properties:
+            index:
+              type: integer
+              minimum: 1
+            slug:
+              type: string
+              description: 页面英文短标识
+            title:
+              type: string
+              description: 页面完整标题
+      information_architecture:
+        type: object
+        required: [ distribution, early_info, late_info ]
+        properties:
+          distribution:
+            type: string
+          early_info:
+            type: string
+          late_info:
+            type: string
+      visual_modules:
+        type: array
+        description: 可复用视觉结构模块
+        items:
+          type: string
