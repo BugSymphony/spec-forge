@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "specforge"
+version = "0.1.0"
+description = "SpecForge — 规范驱动（SDD）内容生成引擎"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.1",
+    "pyyaml>=6.0",
+    "questionary>=2.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+specforge = "forge.cli.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/forge"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"plugins" = "forge/_bundled/plugins"
+"backends" = "forge/_bundled/backends"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/forge/**",
+    "plugins/**",
+    "backends/**",
+    "pyproject.toml",
+]

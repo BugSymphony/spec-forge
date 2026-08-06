@@ -1,0 +1,67 @@
+{
+  "backends": [
+    {
+      "key": "opencode",
+      "name": "OpenCode",
+      "detect_type": "cli",
+      "detect_cmd": "opencode",
+      "command_prefix": "specforge",
+      "outputs": [
+        {
+          "type": "slash_commands",
+          "dir": ".opencode/commands",
+          "invoke_separator": ".",
+          "enabled": true
+        },
+        {
+          "type": "skills",
+          "dir": ".opencode/skills",
+          "invoke_separator": "-",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "key": "cursor",
+      "name": "Cursor",
+      "detect_type": "cli",
+      "detect_cmd": "cursor",
+      "command_prefix": "specforge",
+      "outputs": [
+        {
+          "type": "slash_commands",
+          "dir": ".cursor/commands",
+          "invoke_separator": "-",
+          "enabled": true
+        },
+        {
+          "type": "skills",
+          "dir": ".cursor/skills",
+          "invoke_separator": "-",
+          "enabled": false
+        }
+      ]
+    },
+    {
+      "key": "claude_code",
+      "name": "Claude Code",
+      "detect_type": "ide",
+      "detect_cmd": "",
+      "command_prefix": "specforge",
+      "outputs": [
+        {
+          "type": "slash_commands",
+          "dir": ".claude/commands",
+          "invoke_separator": ".",
+          "enabled": true
+        },
+        {
+          "type": "skills",
+          "dir": ".claude/skills",
+          "invoke_separator": "-",
+          "enabled": false
+        }
+      ]
+    }
+  ]
+}
